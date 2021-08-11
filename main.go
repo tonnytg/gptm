@@ -1,7 +1,13 @@
 package main
 
-import ("github.com/tonnytg/gptm/projects")
+import (
+	"github.com/tonnytg/gptm/projects"
+	"log"
+)
 
 func main() {
-	projects.GetProjects()
+	err := projects.GetProjects()
+	if err != nil {
+		log.Println("error: getting projects:", err)
+	}
 }

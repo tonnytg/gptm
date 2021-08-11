@@ -3,6 +3,7 @@ package projects
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -23,7 +24,7 @@ type MapProject struct {
 }
 
 // GetProjects list each project and show CreateAT, Name and Labels
-func GetProjects() {
+func GetProjects() error {
 
 	token := os.Getenv("GCP_API_KEY")
 	//project := os.Getenv("PROJECT_ID")
@@ -55,6 +56,10 @@ func GetProjects() {
 
 		//fmt.Println(string(data))
 
+		if len(ps.Projects) < 1 {
+			return errors.New("invalid token")
+		}
+
 		for i := 0; i < len(ps.Projects); i++ {
 			fmt.Println("Project:", ps.Projects[i].Name ,"-", ps.Projects[i].ProjectNumber)
 			fmt.Println("CreateAt:", ps.Projects[i].CreateTime)
@@ -65,4 +70,5 @@ func GetProjects() {
 			fmt.Println("---")
 		}
 	}
+	return nil
 }
