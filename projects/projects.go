@@ -58,7 +58,7 @@ func GetProjects() {
 		for i := 0; i < len(ps.Projects); i++ {
 			fmt.Println("Project:", ps.Projects[i].Name ,"-", ps.Projects[i].ProjectNumber)
 			fmt.Println("CreateAt:", ps.Projects[i].CreateTime)
-			fmt.Println("Tags:")
+			fmt.Println("Labels:")
 			for key, value := range ps.Projects[i].Labels {
 				fmt.Printf("\t%s:%s\n", key, value)
 			}

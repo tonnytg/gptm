@@ -1,5 +1,5 @@
 # gptm
-Google Project Tag Management
+Google Project Management
 
 ### About
 
@@ -17,7 +17,7 @@ List All projects and some informations: Name, ProjectID, CreateAt, Labels.
 ➜  gptm git:(main) ✗ go run main.go
 Project: app-engine-01 - 284195978841
 CreateAt: 2021-07-18 13:41:45.023 +0000 UTC
-Tags:
+Labels:
         teste:valor1
         teste2:valor2
         teste3:valor3
@@ -25,7 +25,7 @@ Tags:
 ---
 Project: My First Project - 899036844948
 CreateAt: 2021-06-15 15:38:59.914 +0000 UTC
-Tags:
+Labels:
 ---
 
 ```
