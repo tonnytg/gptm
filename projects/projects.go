@@ -1,17 +1,28 @@
-package main
+package projects
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
-	"golang.org/x/net/context"
-	"golang.org/x/oauth2/google"
-	"google.golang.org/api/cloudresourcemanager/v3"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
+	"time"
 )
 
+type MapProject struct {
+	Projects []struct {
+		ProjectNumber  string            `json:"projectNumber"`
+		ProjectID      string            `json:"projectId"`
+		LifecycleState string            `json:"lifecycleState"`
+		Name           string            `json:"name"`
+		Labels         map[string]string `json:"labels"`
+		CreateTime     time.Time         `json:"createTime"`
+	} `json:"projects"`
+}
+
+// GetProjects list each project and show CreateAT, Name and Labels
 func GetProjects() {
 
 	token := os.Getenv("GCP_API_KEY")
@@ -39,32 +50,19 @@ func GetProjects() {
 		defer resp.Body.Close()
 
 		data, _ := ioutil.ReadAll(resp.Body)
+		var ps MapProject
+		json.Unmarshal(data, &ps)
 
-		fmt.Println("Data:\n", string(data))
-	}
-}
+		//fmt.Println(string(data))
 
-func TestGetProjects() {
-	ctx := context.Background()
-
-	c, err := google.DefaultClient(ctx, cloudresourcemanager.CloudPlatformScope)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	cloudresourcemanagerService, err := cloudresourcemanager.New(c)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	req := cloudresourcemanagerService.Projects.List()
-	if err := req.Pages(ctx, func(page *cloudresourcemanager.ListProjectsResponse) error {
-		for _, project := range page.Projects {
-			// TODO: Change code below to process each `project` resource:
-			fmt.Printf("%#v\n", project)
+		for i := 0; i < len(ps.Projects); i++ {
+			fmt.Println("Project:", ps.Projects[i].Name ,"-", ps.Projects[i].ProjectNumber)
+			fmt.Println("CreateAt:", ps.Projects[i].CreateTime)
+			fmt.Println("Tags:")
+			for key, value := range ps.Projects[i].Labels {
+				fmt.Printf("\t%s:%s\n", key, value)
+			}
+			fmt.Println("---")
 		}
-		return nil
-	}); err != nil {
-		log.Fatal(err)
 	}
 }
