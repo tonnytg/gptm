@@ -12,6 +12,11 @@ List All projects and some informations: Name, ProjectID, CreateAt, Labels.
 `go run main.go`
 
 
+### Docker
+
+`docker run -it --rm --name gptm --env GCP_API_KEY=$(gcloud auth print-access-token) -p 8080:8080 tonnytg/gptm:v0.0.1`
+
+
 ### Output:
 ```
 ➜  gptm git:(main) ✗ go run main.go
