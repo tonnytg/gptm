@@ -1,11 +1,11 @@
+#Build Builder aplication
 FROM golang
 WORKDIR /var/app
 COPY . .
 RUN go build -o main
 
+#Build scratch less than 16kb + binary total 1.94Mb
 FROM golang
 WORKDIR /var/app
-ENV GCP_API_KEY="dontForget"
 COPY --from=0 /var/app .
-CMD ["/var/app/main"]
-EXPOSE 8080/tcp
+ENTRYPOINT ["/var/app/main"]
