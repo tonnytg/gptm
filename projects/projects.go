@@ -24,7 +24,7 @@ type MapProject struct {
 }
 
 // GetProjects list each project and show CreateAT, Name and Labels
-func GetProjects() error {
+func GetProjects() ([]byte, error) {
 
 	token := os.Getenv("GCP_API_KEY")
 	//project := os.Getenv("PROJECT_ID")
@@ -57,18 +57,19 @@ func GetProjects() error {
 		//fmt.Println(string(data))
 
 		if len(ps.Projects) < 1 {
-			return errors.New("invalid token")
+			return []byte{}, errors.New("invalid token")
 		}
 
 		for i := 0; i < len(ps.Projects); i++ {
 			fmt.Println("Project:", ps.Projects[i].Name ,"-", ps.Projects[i].ProjectNumber)
-			fmt.Println("CreateAt:", ps.Projects[i].CreateTime)
+			//fmt.Println("CreateAt:", ps.Projects[i].CreateTime)
 			fmt.Println("Labels:")
 			for key, value := range ps.Projects[i].Labels {
 				fmt.Printf("\t%s:%s\n", key, value)
 			}
 			fmt.Println("---")
 		}
+		return data, nil
 	}
-	return nil
+	return []byte{}, errors.New("no data")
 }
