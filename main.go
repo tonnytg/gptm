@@ -1,13 +1,11 @@
 package main
 
 import (
-	"github.com/tonnytg/gptm/projects"
-	"log"
+	"github.com/tonnytg/gptm/webserver"
+	"net/http"
 )
 
 func main() {
-	err := projects.GetProjects()
-	if err != nil {
-		log.Println("error: getting projects:", err)
-	}
+	http.HandleFunc("/", webserver.GetProjects )
+	http.ListenAndServe(":8080", nil)
 }
