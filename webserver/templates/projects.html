@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>Projects</title>
+    </head>
+
+    <body>
+    <h1>Teste</h1>
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Labels</th>
+                <th>Labels2</th>
+            </tr>
+            {{range .}}
+            <tr>
+                <td>{{.ProjectID}}</td>
+                <td>{{.Name}}</td>
+                <td>{{.Labels}}</td>
+                <td>
+                    {{range $key, $value := .Labels}}
+                    <ul>
+                        <li>{{$key}} - {{$value}}</li>
+                    </ul>
+                    {{end}}
+                </td>
+            </tr>
+            {{end}}
+        </table>
+    </body>
+</html>
