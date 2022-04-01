@@ -2,7 +2,7 @@ package webserver
 
 import (
 	"encoding/json"
-	"github.com/tonnytg/gptm/projects"
+	"github.com/tonnytg/gptm/entity/projects"
 	"html/template"
 	"log"
 	"net/http"
