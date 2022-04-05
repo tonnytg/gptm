@@ -19,6 +19,7 @@ func Get(url string) ([]byte, error) {
 	// body permit add some information to post request but not necessary to method get
 	request, err := http.NewRequest("GET", url, nil)
 	request.Header.Add("authorization", bearer)
+	request.Header.Add("Accept", "application/json")
 	if err != nil {
 		return nil, err
 	}
@@ -53,6 +54,7 @@ func PostJson(url string, jsonDataByte []byte) ([]byte, error) {
 	// body permit add some information to post request but not necessary to method get
 	request, err := http.NewRequest("POST", url, bufferData)
 	request.Header.Add("authorization", bearer)
+	request.Header.Add("Accept", "application/json")
 	if err != nil {
 		return nil, err
 	}
