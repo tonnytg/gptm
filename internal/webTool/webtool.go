@@ -47,7 +47,7 @@ func PostJson(url string, jsonDataByte []byte) ([]byte, error) {
 	// get data json format in byte
 	bufferData := bytes.NewBuffer(jsonDataByte)
 
-	token := os.Getenv("GCP_TOKEN")
+	token := os.Getenv("GCP_API_KEY=$")
 	bearer := "Bearer " + token
 
 	// Formatting request with some information, you can set header

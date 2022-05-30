@@ -1,8 +1,9 @@
 package main
 
 import (
-	"github.com/tonnytg/gptm/pkg/webpage"
 	"net/http"
+
+	"github.com/tonnytg/gptm/internal/webpage"
 )
 
 // main start api
