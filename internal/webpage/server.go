@@ -21,6 +21,6 @@ func GetProjects(w http.ResponseWriter, r *http.Request) {
 		log.Println("error: getting projects:", err)
 	}
 
-	t, err := template.ParseFiles("./pkg/webpage/templates/projects.html")
+	t, err := template.ParseFiles("./internal/webpage/templates/projects.html")
 	t.Execute(w, p.Projects)
 }

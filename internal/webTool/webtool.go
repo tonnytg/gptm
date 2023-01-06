@@ -10,8 +10,8 @@ import (
 func Get(url string) ([]byte, error) {
 
 	headers := map[string]string{
-		"Content-Type": "application/json",
-		"Autorization": "Bearer " + os.Getenv("GCP_API_KEY=$"),
+		"Content-Type":  "application/json",
+		"Authorization": "Bearer " + os.Getenv("GCP_API_KEY"),
 	}
 	body, err := webreq.Get(url, headers, 5)
 	if err != nil {
@@ -25,13 +25,13 @@ func Get(url string) ([]byte, error) {
 func PostJson(url string, jsonDataByte []byte) ([]byte, error) {
 
 	headers := map[string]string{
-		"Content-Type": "application/json",
-		"Autorization": "Bearer " + os.Getenv("GCP_API_KEY=$"),
+		"Content-Type":  "application/json",
+		"Authorization": "Bearer " + os.Getenv("GCP_API_KEY"),
 	}
 	body, err := webreq.Post(url, headers, 5, jsonDataByte)
 	if err != nil {
 		return nil, err
 	}
-	
+
 	return body, nil
 }
