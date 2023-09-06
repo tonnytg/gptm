@@ -2,11 +2,12 @@ package webpage
 
 import (
 	"encoding/json"
-	"github.com/tonnytg/gptm/entity/projects"
-	"github.com/tonnytg/gptm/pkg/webTool"
 	"html/template"
 	"log"
 	"net/http"
+
+	"github.com/tonnytg/gptm/entity/projects"
+	"github.com/tonnytg/gptm/internal/webTool"
 )
 
 func GetProjects(w http.ResponseWriter, r *http.Request) {
@@ -20,6 +21,6 @@ func GetProjects(w http.ResponseWriter, r *http.Request) {
 		log.Println("error: getting projects:", err)
 	}
 
-	t, err := template.ParseFiles("./pkg/webpage/templates/projects.html")
+	t, err := template.ParseFiles("./internal/webpage/templates/projects.html")
 	t.Execute(w, p.Projects)
 }

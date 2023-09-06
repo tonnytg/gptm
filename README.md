@@ -35,6 +35,17 @@ Labels:
 
 ```
 
+### Webserver Enabled
+
+`export GCP_API_KEY=$(gcloud auth print-access-token)`
+
+`go run main.go --webserver enabled`
+
+
+This command will create a webserver on port 8080
+
+![table-projects-info.png](table-projects-info.png)
+
 
 <br/>
 Have fun!<br/>
