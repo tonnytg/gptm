@@ -1,5 +1,5 @@
-FROM golang:1.18-bullseye
-FROM golang:1
+FROM golang:latest
+
 WORKDIR /var/app
-COPY --from=0 /var/app .
+
 ENTRYPOINT ["/var/app/main"]
